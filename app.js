@@ -1,7 +1,7 @@
 const express = require('express');
 
 const cors = require('cors');
-
+const userRouter = require('./routes/user');
 const app = express();
 
 // 处理跨域
@@ -26,7 +26,10 @@ connectDB(
     }
 );
 
+app.use('/user', userRouter)
+
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
     console.log(`服务器正在端口 ${PORT}上运行`);
 });
