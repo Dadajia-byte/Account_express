@@ -2,6 +2,7 @@ const express = require('express');
 
 const cors = require('cors');
 const userRouter = require('./routes/user');
+const billRouter = require('./routes/bill');
 const app = express();
 
 // 处理跨域
@@ -15,7 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', Router);
  */
 const connectDB = require('./db/db'); // 根据实际路径调整
-
+app.use('/user', userRouter)
+app.use('/bill', billRouter)
 // 配置数据库连接成功和失败的回调函数
 connectDB(
     () => {
@@ -26,7 +28,7 @@ connectDB(
     }
 );
 
-app.use('/user', userRouter)
+
 
 const PORT = process.env.PORT || 3000;
 

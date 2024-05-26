@@ -6,21 +6,21 @@ module.exports = (req, res, next) => {
     const token = req.headers.authorization;
     // 获取信息
     if (!token) {
-        return res.json({
-            code: '400',
+        return res.status(401).json({
+            code: '401',
             msg: '请登录',
             data: null
-        })
+        });
     }
     // 注意这个函数似乎不支持promise的链式调用
     jwt.verify(token, `${SECRET}`, (err, data) => {
 
         if (err) {
-            return res.json({
-                code: '400',
+            return res.status(401).json({
+                code: '401',
                 msg: '登录过期',
                 data: null
-            })
+            });
         }
         req.user = data
         next()
