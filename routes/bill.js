@@ -1,6 +1,7 @@
 const express = require('express');
 const verifyToken = require('../midware/checkToken');
 const BillModel = require('../models/AccountModel');
+const UserModel = require('../models/UserModel')
 
 const router = express.Router();
 

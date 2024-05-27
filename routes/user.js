@@ -84,11 +84,16 @@ router.get('/userinfo', verifyToken, (req, res) => {
         if (!user) {
             return res.status(404).json({ msg: '用户不存在' });
         }
-        res.json({ user });
+        res.json({
+            code: 200,
+            msg: '获取用户信息成功',
+            data: user
+        });
     }).catch(err => {
         console.error(err);
         return res.status(500).json({ msg: '服务器内部错误' });
     });
 });
+
 
 module.exports = router;
